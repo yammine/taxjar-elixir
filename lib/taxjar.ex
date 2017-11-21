@@ -18,4 +18,14 @@ defmodule Taxjar do
   def configure(scope, config)
   def configure(:global, config), do: Taxjar.Config.set(:global, config)
   def configure(:process, config), do: Taxjar.Config.set(:process, config)
+
+
+  @type response :: Taxjar.Rate.t | any
+  @doc """
+  Executes a request for a given Taxjar.Query struct.
+  """
+  @spec request(Taxjar.Query.t, Keyword.t) :: {:ok, response} | {:error, Taxjar.Error.t}
+  def request(%Taxjar.Query{} = query, config_overrides \\ []) do
+    Taxjar.Query.perform(query, Taxjar.Config.request_config(config_overrides))
+  end
 end

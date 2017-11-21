@@ -9,6 +9,24 @@ defmodule Taxjar.Config do
   """
   @type scope :: :global | :process
 
+  @request_config_defaults [
+    scheme: "https",
+    host: "api.taxjar.com/v2",
+    port: nil
+  ]
+
+  @doc """
+  Allows runtime override of request configuration like scheme, host, and port.
+  """
+  @spec request_config(Keyword.t) :: Keyword.t
+  def request_config(config_overrides \\ []) when is_list(config_overrides) do
+    Keyword.merge(@request_config_defaults, config_overrides)
+  end
+
+  @doc """
+  Gets the current scope of a process.
+  """
+  @spec current_scope() :: scope
   def current_scope do
     if Process.get(:_taxjar_config, nil), do: :process, else: :global
   end
