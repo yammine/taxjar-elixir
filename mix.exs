@@ -4,7 +4,7 @@ defmodule Taxjar.Mixfile do
   def project do
     [
       app: :taxjar,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.5",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -26,6 +26,7 @@ defmodule Taxjar.Mixfile do
       {:httpoison, "~> 0.13"},
       {:poison, "~> 3.0"},
       {:ex_doc, ">= 0.0.0", only: :dev},
+      {:bypass, "~> 0.8", only: :test},
     ]
   end
 
