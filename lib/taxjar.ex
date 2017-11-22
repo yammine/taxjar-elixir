@@ -20,7 +20,7 @@ defmodule Taxjar do
   def configure(:process, config), do: Taxjar.Config.set(:process, config)
 
 
-  @type response :: Taxjar.Rate.t | any
+  @type response :: any
   @doc """
   Executes a request for a given Taxjar.Query struct.
   """

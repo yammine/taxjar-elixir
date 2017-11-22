@@ -2,18 +2,24 @@ defmodule Taxjar.Query do
   @moduledoc """
   All requests to Taxjar will be composed via a Taxjar.Query struct.
   """
+  alias Taxjar.Parser
+
   defstruct [
+    action: nil,
     http_method: :get,
     path: "/",
     params: %{},
-    additional_headers: %{}
+    additional_headers: %{},
+    parser: &Parser.parse/2,
   ]
 
   @type t :: %__MODULE__{
+    action: nil | Atom.t,
     http_method: :get | :post | :put | :patch | :delete,
     path: String.t,
     params: map,
-    additional_headers: map
+    additional_headers: map,
+    parser: (String.t -> Parser.result)
   }
 
   @spec perform(t, Keyword.t) :: {:ok, any} | {:error, Taxjar.Error.t}
@@ -28,7 +34,9 @@ defmodule Taxjar.Query do
 
     headers = [{"Authorization", "Bearer #{api_token}"}]
 
-    Taxjar.HTTP.request(query.http_method, url, data, headers)
+    result = Taxjar.HTTP.request(query.http_method, url, data, headers)
+
+    query.parser.(result, query.action)
   end
 
   defp build_url(query, config) do
