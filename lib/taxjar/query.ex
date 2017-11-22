@@ -51,4 +51,22 @@ defmodule Taxjar.Query do
       port -> "#{config[:scheme]}://#{config[:host]}:#{port}#{path}"
     end
   end
+
+  @doc """
+  Merges a map of params into the provided Taxjar.Query
+  """
+  @spec merge_params(t, map) :: t
+  def merge_params(query, params) do
+    new_params = Map.merge(query.params, params)
+    %{query | params: new_params}
+  end
+
+  @doc """
+  Merges a map of headers into the provided Taxjar.Query
+  """
+  @spec merge_headers(t, map) :: t
+  def merge_headers(query, headers) do
+    new_headers = Map.merge(query.additional_headers, headers)
+    %{query | additional_headers: new_headers}
+  end
 end
