@@ -9,7 +9,7 @@ defmodule Taxjar.Mixfile do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
-      desciption: "A client library for use of the TaxJar API.",
+      description: "A client library for use of the TaxJar API.",
     ]
   end
 
