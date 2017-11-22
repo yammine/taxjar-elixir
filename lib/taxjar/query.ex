@@ -11,12 +11,12 @@ defmodule Taxjar.Query do
             additional_headers: %{},
             parser: &Parser.parse/2
 
-  @typep action :: nil | Atom.t()
-  @typep http_method :: :get | :post | :put | :patch | :delete
-  @typep path :: String.t()
-  @typep params :: Map.t()
-  @typep headers :: Map.t()
-  @typep parser :: (String.t(), action -> Parser.result())
+  @type action :: nil | Atom.t()
+  @type http_method :: :get | :post | :put | :patch | :delete
+  @type path :: String.t()
+  @type params :: Map.t()
+  @type headers :: Map.t()
+  @type parser :: (String.t(), action -> Parser.result())
 
   @type t :: %__MODULE__{
           action: action,
