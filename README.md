@@ -1,11 +1,20 @@
 # Taxjar
 
-**TODO: Add description**
+A client library for use of the [TaxJar API](https://developers.taxjar.com/api/reference/).
+
+## Documentation
+
+Once published, the docs can be found at [https://hexdocs.pm/taxjar](https://hexdocs.pm/taxjar).
+
+**TODO:**
+- [ ] Publish to hex & publish documentation
+- [ ] Tests
+- [ ] Retrying requests on connection error
+- [ ] Covering more than https://developers.taxjar.com/api/reference/#get-show-tax-rates-for-a-location
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `taxjar` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `taxjar` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -15,7 +24,4 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/taxjar](https://hexdocs.pm/taxjar).
-
+Once published, the docs can be found at [https://hexdocs.pm/taxjar](https://hexdocs.pm/taxjar).
