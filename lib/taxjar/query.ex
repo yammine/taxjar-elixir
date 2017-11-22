@@ -4,33 +4,31 @@ defmodule Taxjar.Query do
   """
   alias Taxjar.Parser
 
-  defstruct [
-    action: nil,
-    http_method: :get,
-    path: "/",
-    params: %{},
-    additional_headers: %{},
-    parser: &Parser.parse/2,
-  ]
+  defstruct action: nil,
+            http_method: :get,
+            path: "/",
+            params: %{},
+            additional_headers: %{},
+            parser: &Parser.parse/2
 
   @type t :: %__MODULE__{
-    action: nil | Atom.t,
-    http_method: :get | :post | :put | :patch | :delete,
-    path: String.t,
-    params: map,
-    additional_headers: map,
-    parser: (String.t -> Parser.result)
-  }
+          action: nil | Atom.t(),
+          http_method: :get | :post | :put | :patch | :delete,
+          path: String.t(),
+          params: map,
+          additional_headers: map,
+          parser: (String.t() -> Parser.result())
+        }
 
-  @spec perform(t, Keyword.t) :: {:ok, any} | {:error, Taxjar.Error.t}
+  @spec perform(t, Keyword.t()) :: {:ok, any} | {:error, Taxjar.Error.t()}
   def perform(query, config) do
     url = build_url(query, config)
     data = URI.encode_query(query.params)
-    api_token = Keyword.get_lazy(
-      Taxjar.Config.get,
-      :api_token,
-      fn -> raise "Taxjar api_token not set." end
-    )
+
+    api_token =
+      Keyword.get_lazy(Taxjar.Config.get(), :api_token, fn ->
+        raise "Taxjar api_token not set."
+      end)
 
     headers = [{"Authorization", "Bearer #{api_token}"}]
 

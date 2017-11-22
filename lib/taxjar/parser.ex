@@ -6,11 +6,11 @@ defmodule Taxjar.Parser do
 
   alias Taxjar.Models.Rates
 
-  @type result :: {:ok, any} | {:error, Taxjar.Error.t}
+  @type result :: {:ok, any} | {:error, Taxjar.Error.t()}
 
   def parse({:ok, response}, action) do
     response.body
-    |> Poison.decode!
+    |> Poison.decode!()
     |> parse(action)
   end
 
@@ -23,7 +23,7 @@ defmodule Taxjar.Parser do
   defp build_client_error(error) do
     error_messages =
       error.body
-      |> Poison.decode!
+      |> Poison.decode!()
       |> Map.take(["error", "detail"])
 
     message = "#{error_messages["error"]}. #{error_messages["detail"]}"
