@@ -7,7 +7,7 @@ A client library for use of the [TaxJar API](https://developers.taxjar.com/api/r
 Once published, the docs can be found at [https://hexdocs.pm/taxjar](https://hexdocs.pm/taxjar).
 
 **TODO:**
-- [ ] Publish to hex & publish documentation
+- [x] Publish to hex & publish documentation
 - [ ] Tests
 - [ ] Retrying requests on connection error
 - [ ] Covering more than https://developers.taxjar.com/api/reference/#get-show-tax-rates-for-a-location
