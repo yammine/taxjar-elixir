@@ -30,4 +30,5 @@ use Mix.Config
 #     import_config "#{Mix.env}.exs"
 
 config :taxjar, Taxjar.Config,
-  api_token: System.get_env("TAXJAR_API_TOKEN")
+  api_token: System.get_env("TAXJAR_API_TOKEN"),
+  debug_requests: false
