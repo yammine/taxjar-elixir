@@ -4,7 +4,7 @@ A client library for use of the [TaxJar API](https://developers.taxjar.com/api/r
 
 ## Documentation
 
-Once published, the docs can be found at [https://hexdocs.pm/taxjar](https://hexdocs.pm/taxjar).
+The docs can be found at [https://hexdocs.pm/taxjar](https://hexdocs.pm/taxjar).
 
 **TODO:**
 - [x] Publish to hex & publish documentation
@@ -23,5 +23,3 @@ def deps do
   ]
 end
 ```
-
-Once published, the docs can be found at [https://hexdocs.pm/taxjar](https://hexdocs.pm/taxjar).
