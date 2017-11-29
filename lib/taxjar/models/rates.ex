@@ -28,11 +28,15 @@ defmodule Taxjar.Models.Rates do
 
   @type t :: %__MODULE__{}
 
+  @convert_to_float ~w(state_rate county_rate city_rate combined_district_rate combined_rate
+    country_rate standard_rate reduced_rate super_reduced_rate parking_rate)a
+
   def new(map) do
     rates =
       map
       |> Map.get("rate")
-      |> atomize_keys
+      |> atomize_keys()
+      |> convert_rates_to_floats()
 
     struct(__MODULE__, rates)
   end
@@ -41,5 +45,17 @@ defmodule Taxjar.Models.Rates do
     Enum.reduce(map, %{}, fn {k, v}, acc ->
       Map.put(acc, String.to_atom(k), v)
     end)
+  end
+
+  defp convert_rates_to_floats(map) do
+    Enum.reduce(map,%{}, fn
+      {k, v}, acc when k in @convert_to_float -> Map.put(acc, k, to_float(v))
+      {k, v}, acc -> Map.put(acc, k, v)
+    end)
+  end
+
+  defp to_float(value) do
+    {float, _leftover} = Float.parse(value)
+    float
   end
 end
