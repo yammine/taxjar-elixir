@@ -38,13 +38,13 @@ defmodule Taxjar.RatesTest do
       assert match?(%Taxjar.Models.Rates{}, rates)
       assert rates.zip == "90404"
       assert rates.state == "CA"
-      assert rates.state_rate == "0.0625"
+      assert rates.state_rate == 0.0625
       assert rates.county == "LOS ANGELES"
-      assert rates.county_rate == "0.01"
+      assert rates.county_rate == 0.01
       assert rates.city == "SANTA MONICA"
-      assert rates.city_rate == "0.0"
-      assert rates.combined_district_rate == "0.025"
-      assert rates.combined_rate == "0.0975"
+      assert rates.city_rate == 0.0
+      assert rates.combined_district_rate == 0.025
+      assert rates.combined_rate == 0.0975
       assert rates.freight_taxable == false
     end
   end

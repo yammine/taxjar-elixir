@@ -27,6 +27,7 @@ defmodule Taxjar.Mixfile do
       {:poison, "~> 3.0"},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:bypass, "~> 0.8", only: :test},
+      {:mix_test_watch, ">= 0.0.0", only: :dev},
     ]
   end
 
